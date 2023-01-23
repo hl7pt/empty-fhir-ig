@@ -32,7 +32,7 @@ jobs:
       - name: Get branch name
         run: echo ${GITHUB_REF##*/}
       - name: Get branch name
-        run: echo ${GITHUB_REF_NAME}
+        run: echo ${GITHUB_REPOSITORY}
     
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
