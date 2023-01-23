@@ -31,6 +31,9 @@ jobs:
    
       - name: Get branch name
         run: echo ${GITHUB_REF##*/}
+      - name: Get branch name
+        run: echo ${GITHUB_REF_NAME}
+    
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       - name: Create gh-pages branch if it doesn't exist
