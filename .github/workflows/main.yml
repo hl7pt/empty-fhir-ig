@@ -44,11 +44,18 @@ jobs:
           # Get the latest publisher - don't run the batch script but run the line directly
           args: curl -L https://github.com/HL7/fhir-ig-publisher/releases/latest/download/publisher.jar -o ./input-cache/publisher.jar --create-dirs
 
+      - name: Set env
+#        uses: docker://hl7fhir/ig-publisher-base:latest
+        run: echo ::set-env name=REPOPATH::https://github.com/${{ env.GITHUB_REPOSITORY }}
+      - name: Test
+#        uses: docker://hl7fhir/ig-publisher-base:latest
+        run: echo $REPOPATH
+
       - name: Run the IG publisher
         uses: docker://hl7fhir/ig-publisher-base:latest
         with:
           # Run the publisher - don't run the batch script but run the line directly
-          args: java -jar -Xmx1g ./input-cache/publisher.jar publisher -ig . -auto-ig-build -repo https://github.com/$GITHUB_REPOSITORY
+          args: java -jar -Xmx1g ./input-cache/publisher.jar publisher -ig . -auto-ig-build -repo $REPOPATH
 
       - name: Get branch names
         id: branch-name
