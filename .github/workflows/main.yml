@@ -48,7 +48,7 @@ jobs:
         uses: docker://hl7fhir/ig-publisher-base:latest
         with:
           # Run the publisher - don't run the batch script but run the line directly
-          args: java -jar -Xmx1g ./input-cache/publisher.jar publisher -ig . -repo https://github.com/${GITHUB_REPOSITORY}
+          args: java -jar -Xmx1g ./input-cache/publisher.jar publisher -ig . -auto-ig-build -repo https://github.com/${{GITHUB_REPOSITORY}}
 
       - name: Get branch names
         id: branch-name
